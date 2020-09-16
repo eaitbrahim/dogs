@@ -23,10 +23,14 @@ function createBreedList(breedList){
 }
 
 async function loadByBread(breed){
-    if(breed != 'Choose a dog breed'){
-        const response = await fetch(`https://dog.ceo/api/breed/${breed}/images`);
-        const data = await response.json();
-        createSlideshow(data.message);
+    try {
+        if(breed != 'Choose a dog breed'){
+            const response = await fetch(`https://dog.ceo/api/breed/${breed}/images`);
+            const data = await response.json();
+            createSlideshow(data.message);
+        }
+    } catch (e){
+        console.log('There was a problem fetching the breed.');
     }
 }
 
